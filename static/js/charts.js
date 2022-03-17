@@ -20,10 +20,10 @@ function init() {
   });
 }
 
-// Initialize the dashboard
-init();
 
+// this function is the trigger when the drop down is used to select a new value
 function optionChanged(newSample) {
+
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
   buildCharts(newSample);
@@ -34,9 +34,14 @@ function optionChanged(newSample) {
 function buildMetadata(sample) {
   d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
+    console.log(metadata)
+
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    console.log(resultArray)
     var result = resultArray[0];
+    console.log(result)
+
     // Use d3 to select the panel with id of `#sample-metadata`
     var PANEL = d3.select("#sample-metadata");
 
@@ -52,6 +57,7 @@ function buildMetadata(sample) {
 
   });
 }
+
 
 // Deliverable 1: Create a Horizontal Bar Chart 
 
